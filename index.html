@@ -1,215 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XRPN — XRP NEO Protocol</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --primary: #00c6ff;
-  --secondary: #0072ff;
-  --accent: #4ade80;
-  --danger: #ff4d4d;
-  --bg-dark: #080b14;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --text-main: #ffffff;
-  --text-dim: #94a3b8;
-}
-
-body {
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-dark);
-  background: radial-gradient(circle at top right, #1e293b, #080b14);
-  color: var(--text-main);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 60px 20px;
-}
-
-/* HERO SECTION */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  min-height: 70vh;
-}
-
-.hero-left {
-  flex: 1;
-}
-
-h1 {
-  font-size: 64px;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-}
-
-.highlight {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sub {
-  font-size: 20px;
-  color: var(--text-dim);
-  font-weight: 400;
-}
-
-.fomo {
-  margin-top: 25px;
-  display: inline-block;
-  padding: 8px 16px;
-  background: rgba(255, 77, 77, 0.1);
-  border-radius: 50px;
-  color: var(--danger);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* BUTTONS */
-.cta-btn {
-  margin-top: 35px;
-  padding: 18px 36px;
-  font-size: 18px;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border: none;
-  border-radius: 12px;
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 10px 20px rgba(0, 114, 255, 0.3);
-}
-
-.cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(0, 114, 255, 0.4);
-}
-
-/* BUY PANEL (GLASSMORPHISM) */
-.buy-box {
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-  max-width: 380px;
-}
-
-.label {
-  font-size: 14px;
-  color: var(--text-dim);
-  margin-bottom: 5px;
-}
-
-.price {
-  font-size: 32px;
-  color: var(--text-main);
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-
-.price.blue { color: var(--primary); }
-
-.input-group {
-  margin-top: 25px;
-}
-
-input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: #fff;
-  font-size: 16px;
-  margin-top: 8px;
-  outline: none;
-}
-
-input:focus {
-  border-color: var(--primary);
-}
-
-/* SECTIONS & CARDS */
-.section {
-  margin-top: 120px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: var(--card-bg);
-  padding: 35px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.3s;
-}
-
-.card:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.big {
-  display: block;
-  font-size: 42px;
-  color: var(--accent);
-  font-weight: 800;
-  margin-top: 10px;
-}
-
-.benefit-list {
-  text-align: left;
-  list-style: none;
-  padding: 0;
-  display: inline-block;
-}
-
-.benefit-list li {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-}
-
-.benefit-list li::before {
-  content: "✓";
-  margin-right: 15px;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-/* RESPONSIVE */
-@media (max-width: 868px) {
-  .hero { flex-direction: column; text-align: center; }
-  h1 { font-size: 42px; }
-  .buy-box { max-width: 100%; box-sizing: border-box; }
-}
+body {margin:0;font-family:Arial;background:#0b0f1a;color:#fff;}
+.container {max-width:1100px;margin:auto;padding:40px 20px;}
+nav {display:flex;gap:20px;margin-bottom:40px;}
+a {color:#aaa;text-decoration:none;}
+a:hover {color:#00c6ff;}
+.hero {display:flex;justify-content:space-between;align-items:center;gap:40px;}
+h1 {font-size:48px;}
+.highlight {color:#00c6ff;}
+.buy-box {background:#111827;padding:25px;border-radius:12px;width:350px;}
+.price {font-size:28px;color:#00c6ff;font-weight:bold;}
+button {margin-top:20px;padding:15px;background:linear-gradient(90deg,#00c6ff,#0072ff);border:none;border-radius:10px;color:#fff;font-weight:bold;}
+.section {margin-top:80px;text-align:center;}
+.card {background:#111827;padding:25px;border-radius:12px;margin-top:20px;}
 </style>
 </head>
 
@@ -217,68 +26,41 @@ h2 {
 
 <div class="container">
 
-  <div class="hero">
-    <div class="hero-left">
-      <h1>
-        Buy XRP at <br>
-        <span class="highlight">Early Prices Again</span>
-      </h1>
-      <p class="sub">XRPN — The XRP NEO Protocol. <br>The next evolution of institutional liquid staking.</p>
-      <div class="fomo">
-        🔥 Flash Sale: Next price increase in 24 hours
-      </div>
-      <br>
-      <button class="cta-btn">🚀 Buy XRPN Now</button>
-    </div>
+<nav>
+<a href="index.html">Home</a>
+<a href="staking.html">Staking</a>
+<a href="tokenomics.html">Tokenomics</a>
+<a href="roadmap.html">Roadmap</a>
+<a href="whitepaper.html">Whitepaper</a>
+<a href="faq.html">FAQ</a>
+</nav>
 
-    <div class="buy-box">
-      <div class="label">Current XRPN Price</div>
-      <div class="price blue">$0.0028</div>
+<div class="hero">
 
-      <div class="label">Live XRP Market Price</div>
-      <div class="price" id="xrp-price">Loading...</div>
+<div>
+<h1>Buy XRP at <span class="highlight">Early Prices Again</span></h1>
+<p>The XRP NEO Protocol</p>
+<p style="color:red;font-weight:bold;">🔥 Limited time before price increase</p>
 
-      <div style="color: var(--accent); font-weight: 600; font-size: 14px; margin-top: -10px;" id="xrp-mult">
-        Connecting to blockchain...
-      </div>
+<button>🚀 Buy XRPN Now</button>
+</div>
 
-      <div class="input-group">
-        <div class="label">Amount (ETH)</div>
-        <input type="number" placeholder="0.5">
-      </div>
+<div class="buy-box">
+<div>XRPN Price</div>
+<div class="price">$0.0028</div>
 
-      <button class="cta-btn" style="width:100%; margin-top: 25px;">Buy Now</button>
-    </div>
-  </div>
+<div style="margin-top:10px;">XRP Price</div>
+<div class="price" id="xrp-price">Loading...</div>
 
-  <div class="section">
-    <h2>Potential Growth</h2>
-    <div class="card" id="profit-box">
-      <div class="label">If XRPN reaches current XRP price</div>
-      <span style="font-size: 20px;">$100 investment becomes</span>
-      <span class="big">Calculating...</span>
-    </div>
-  </div>
+<div style="margin-top:10px;color:#4ade80;" id="xrp-mult">...</div>
+</div>
 
-  <div class="grid section">
-    <div class="card">
-      <h3>Why XRPN?</h3>
-      <ul class="benefit-list">
-        <li>Early Entry Opportunity</li>
-        <li>Staking Rewards (APY 12%)</li>
-        <li>Deflationary Supply Model</li>
-      </ul>
-    </div>
+</div>
 
-    <div class="card">
-      <h3>Security & Trust</h3>
-      <ul class="benefit-list">
-        <li>Verified Smart Contract</li>
-        <li>Liquidity Locked 2 Years</li>
-        <li>Fully KYC'd Core Team</li>
-      </ul>
-    </div>
-  </div>
+<div class="section">
+<h2>If XRPN reaches XRP price</h2>
+<div class="card" id="profit-box">...</div>
+</div>
 
 </div>
 
@@ -286,30 +68,21 @@ h2 {
 const XRPN_PRICE = 0.0028;
 
 async function updateXRP(){
-  try{
-    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ripple&vs_currencies=usd");
-    const data = await res.json();
-    const price = data.ripple.usd;
+  const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ripple&vs_currencies=usd");
+  const data = await res.json();
+  const price = data.ripple.usd;
 
-    document.getElementById("xrp-price").textContent = "$"+price.toFixed(4);
+  document.getElementById("xrp-price").textContent = "$"+price;
 
-    const mult = (price / XRPN_PRICE).toFixed(0);
-    document.getElementById("xrp-mult").textContent = "🚀 Potential " + mult + "x Growth";
+  const mult = (price / XRPN_PRICE).toFixed(0);
+  document.getElementById("xrp-mult").textContent = "Up to "+mult+"x";
 
-    const profit = (100 * (price / XRPN_PRICE)).toLocaleString(undefined, {maximumFractionDigits: 0});
-    document.getElementById("profit-box").innerHTML = `
-      <div class="label">If XRPN reaches current XRP price</div>
-      <span style="font-size: 20px;">$100 investment becomes</span>
-      <span class="big">$${profit}</span>
-    `;
-
-  }catch(e){
-    document.getElementById("xrp-price").textContent = "Check Connection";
-  }
+  document.getElementById("profit-box").innerHTML =
+  "$100 → $" + (100*mult).toLocaleString();
 }
 
 updateXRP();
-setInterval(updateXRP, 10000);
+setInterval(updateXRP,10000);
 </script>
 
 </body>
