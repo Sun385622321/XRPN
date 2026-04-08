@@ -1,14 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Whitepaper</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XRPN Whitepaper</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background:#0b0f1a;color:#fff;font-family:Arial;">
-<div style="max-width:900px;margin:auto;padding:40px;">
-<h1>Whitepaper</h1>
-<p>Coming soon...</p>
-<a href="index.html">← Back</a>
-</div>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">X</div>
+        <div>
+          <div class="brand-text">XRPN</div>
+          <div class="brand-sub">XRP NEO Protocol</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn secondary" onclick="connectWallet()">Connect Wallet</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-box">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Project Document</div>
+          <h1>Whitepaper overview and publication structure.</h1>
+          <p>
+            This page gives users confidence before the full downloadable whitepaper is attached. Even before the PDF is live,
+            the website should explain what the document covers and why it matters.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card">
+          <div class="icon-circle">⌘</div>
+          <h3>What the whitepaper should contain</h3>
+          <p>
+            Token allocation, presale logic, claim process, staking mechanics, roadmap structure, risk disclosure, team presentation,
+            and ecosystem vision.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon-circle">⎘</div>
+          <h3>Why this page matters now</h3>
+          <p>
+            Even when the PDF is not attached yet, a clear document structure signals seriousness and reduces the feeling that the
+            project is unfinished.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-3">
+        <div class="card">
+          <h3>01. Protocol Thesis</h3>
+          <p>Define XRPN’s role as an XRP-inspired early-entry concept with long-term participation design.</p>
+        </div>
+        <div class="card">
+          <h3>02. Token Economy</h3>
+          <p>Explain supply, allocation, stage pricing, and why the distribution model is structured this way.</p>
+        </div>
+        <div class="card">
+          <h3>03. Staking Mechanics</h3>
+          <p>Describe reward logic, early staking incentives, and user behavior encouraged by the system.</p>
+        </div>
+        <div class="card">
+          <h3>04. Roadmap</h3>
+          <p>Show the path from presale to claim, liquidity, ecosystem launch, and future utility expansion.</p>
+        </div>
+        <div class="card">
+          <h3>05. Risk Disclosure</h3>
+          <p>Communicate clearly that digital assets carry volatility, execution risk, and market uncertainty.</p>
+        </div>
+        <div class="card">
+          <h3>06. Governance Direction</h3>
+          <p>Outline how the ecosystem could evolve beyond launch and become more participatory over time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="note-card" style="padding:28px">
+          <p>
+            <strong>Download button tip:</strong> when your PDF is ready, add a real file link here and change the CTA text to
+            “Download Whitepaper (PDF)”. Until then, keeping a thoughtful overview page is better than showing an empty placeholder.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand-text">XRPN</div>
+        <small>XRPN — XRP NEO Protocol</small>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
 </body>
 </html>
