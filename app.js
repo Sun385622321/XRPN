@@ -186,34 +186,11 @@ function initFaq() {
   });
 }
 
-/* 검색 불가능한 가짜 지갑 표시 */
-function randomPseudoPart(length) {
-  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-  let out = "";
-  for (let i = 0; i < length; i++) {
-    out += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return out;
-}
-
-function makePseudoWalletId() {
-  return "0x" + randomPseudoPart(2) + "..." + randomPseudoPart(1) + randomPseudoPart(3);
-}
-
-function startSocialProof() {
-  setInterval(() => {
-    const wallet = makePseudoWalletId();
-    const amount = (Math.random() * 2.8 + 0.2).toFixed(2);
-    showToast(wallet + " bought " + amount + " ETH");
-  }, 9000);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   updateXRPPrice();
   setInterval(updateXRPPrice, 15000);
   startCountdown();
   initFaq();
-  startSocialProof();
 
   const input = document.getElementById("pay-input");
   if (input) input.addEventListener("input", updateReceive);
