@@ -41,7 +41,18 @@ async function updateXRPPrice() {
 
     if (profitEl) {
       const projected = 100 * mult;
-      profitEl.innerHTML = "$100 today could represent <strong>" + formatMoney(projected, 0) + "</strong> if XRPN reaches XRP’s current price.";
+      profitEl.innerHTML =
+        "$100 today could represent <strong>" +
+        formatMoney(projected, 0) +
+        "</strong> if XRPN reaches XRP’s current price.";
+    }
+
+    const liveXrpBar = document.getElementById("live-xrp-bar");
+    const liveXrpFill = document.getElementById("live-xrp-fill");
+    if (liveXrpBar) liveXrpBar.textContent = formatMoney(price, 2);
+    if (liveXrpFill) {
+      const pct = Math.min(100, Math.max(8, (price / 2.5) * 100));
+      liveXrpFill.style.width = pct + "%";
     }
   } catch (e) {
     priceEl.textContent = "Unavailable";
@@ -141,6 +152,7 @@ function handleBuy() {
     connectWallet();
     return;
   }
+
   if (!value) {
     showToast("Please enter an amount first.");
     return;
@@ -161,7 +173,9 @@ function initFaq() {
       const open = answer.classList.contains("open");
 
       document.querySelectorAll(".faq-a").forEach(a => a.classList.remove("open"));
-      document.querySelectorAll(".faq-icon").forEach(i => i.textContent = "+");
+      document.querySelectorAll(".faq-icon").forEach(i => {
+        i.textContent = "+";
+      });
 
       if (!open) {
         answer.classList.add("open");
@@ -171,12 +185,26 @@ function initFaq() {
   });
 }
 
+/* 검색 불가능한 가짜 지갑 아이디 생성 */
+function randomPseudoPart(length) {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let out = "";
+  for (let i = 0; i < length; i++) {
+    out += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return out;
+}
+
+function makePseudoWalletId() {
+  return "0x" + randomPseudoPart(2) + "..." + randomPseudoPart(1) + randomPseudoPart(3);
+}
+
+/* 가짜 구매 알림 */
 function startSocialProof() {
-  const names = ["Alex", "Daniel", "James", "Mina", "Chris", "Sophie"];
   setInterval(() => {
-    const name = names[Math.floor(Math.random() * names.length)];
-    const amount = (Math.random() * 3 + 0.2).toFixed(2);
-    showToast(name + " just joined the XRPN presale with " + amount + " ETH");
+    const wallet = makePseudoWalletId();
+    const amount = (Math.random() * 2.8 + 0.2).toFixed(2);
+    showToast(wallet + " bought " + amount + " ETH");
   }, 9000);
 }
 
