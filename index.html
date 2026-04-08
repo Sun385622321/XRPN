@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>XRPN — XRP를 초기 가격으로 다시 살 기회</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bl:#1B6FEB;--bl2:#4A90FF;--cy:#00C6CF;--go:#F59E0B;
+  --bg:#F4F8FF;--wh:#fff;--tx:#0D1B2E;--mi:#4A5568;--so:#8FA3BF;
+  --bo:#D6E8FF;--r:14px;--rl:20px;
+  --sh:0 4px 24px rgba(27,111,235,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--tx);font-size:15px;line-height:1.6;}
+a{text-decoration:none;color:inherit;cursor:pointer;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+.sec{padding:68px 0;}
+.st{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;text-align:center;margin-bottom:8px;}
+.ss{text-align:center;font-size:14px;font-weight:600;color:var(--so);margin-bottom:42px;}
+.div{height:1px;background:var(--bo);}
+.gr{background:linear-gradient(90deg,var(--bl),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* ── NAV ── */
+.nav{background:var(--wh);border-bottom:1.5px solid var(--bo);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 36px;position:sticky;top:0;z-index:200;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.nav-links{display:flex;gap:22px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:700;color:var(--mi);transition:color .2s;}
+.nav-links a:hover{color:var(--bl);}
+#btn-connect{background:linear-gradient(135deg,var(--bl),var(--bl2));color:#fff;
+  border:none;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 14px rgba(27,111,235,.28);transition:opacity .2s;}
+#btn-connect:hover{opacity:.88;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#EBF3FF,#E0FAFB);border-bottom:1.5px solid var(--bo);}
+.hero-inner{max-width:1100px;margin:0 auto;padding:60px 32px 0;
+  display:grid;grid-template-columns:1fr 400px;gap:44px;align-items:end;}
+.bdg{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(27,111,235,.1);border:1.5px solid rgba(27,111,235,.25);
+  border-radius:40px;padding:6px 16px;font-size:12px;font-weight:800;
+  color:var(--bl);margin-bottom:18px;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--cy);
+  animation:bk 1.8s ease-in-out infinite;}
+@keyframes bk{0%,100%{opacity:1;}50%{opacity:.15;}}
+.h1{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;line-height:1.12;margin-bottom:18px;}
+.hd{font-size:15px;color:var(--mi);line-height:1.75;max-width:460px;margin-bottom:22px;font-weight:600;}
+
+/* 가격 비교 배너 */
+.price-compare{background:var(--wh);border:1.5px solid var(--bo);border-radius:var(--rl);
+  padding:20px 24px;margin-bottom:20px;box-shadow:var(--sh);}
+.pc-title{font-size:11px;font-weight:800;color:var(--so);letter-spacing:1px;margin-bottom:14px;}
+.pc-row{display:flex;align-items:center;gap:10px;}
+.pc-item{flex:1;text-align:center;}
+.pc-lbl{font-size:11px;font-weight:700;color:var(--so);margin-bottom:5px;}
+.pc-price{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.pc-price.now{color:var(--bl);}
+.pc-price.xrp{color:#1D9E75;}
+.pc-arrow{font-size:20px;color:var(--so);flex-shrink:0;}
+.pc-gain{background:linear-gradient(135deg,#E6F5EC,#D1FAE5);
+  border:1.5px solid #86EFAC;border-radius:10px;padding:10px 14px;
+  text-align:center;flex-shrink:0;}
+.pc-gain-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#15803D;}
+.pc-gain-lbl{font-size:10px;font-weight:700;color:#166534;margin-top:1px;}
+
+/* 훅 3줄 */
+.hooks{display:flex;flex-direction:column;gap:9px;margin-bottom:24px;}
+.hook{display:flex;align-items:center;gap:12px;background:var(--wh);
+  border:1.5px solid var(--bo);border-radius:10px;padding:11px 15px;
+  font-size:13px;font-weight:600;color:var(--mi);}
+.hook strong{color:var(--tx);font-weight:800;}
+.hook-ico{font-size:18px;flex-shrink:0;}
+
+/* 히어로 스탯 */
+.hs{display:flex;background:var(--wh);border:1.5px solid var(--bo);
+  border-radius:var(--r);overflow:hidden;margin-bottom:40px;box-shadow:var(--sh);}
+.hst{flex:1;padding:14px 16px;border-right:1.5px solid var(--bo);}
+.hst:last-child{border-right:none;}
+.hv{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--bl);margin-bottom:2px;}
+.hl{font-size:11px;font-weight:700;color:var(--so);letter-spacing:.4px;}
+
+/* ── 구매 카드 ── */
+.bc{background:var(--wh);border:2px solid var(--bo);border-radius:var(--rl);
+  padding:26px 24px;box-shadow:0 8px 40px rgba(27,111,235,.12);}
+.bct{background:linear-gradient(135deg,var(--bl),var(--bl2));
+  border-radius:12px;padding:16px 18px;margin-bottom:18px;color:#fff;}
+.bcr{display:flex;justify-content:space-between;align-items:flex-start;}
+.bcl{font-size:11px;font-weight:800;letter-spacing:1px;opacity:.8;margin-bottom:4px;}
+.bcp{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;}
+.bcb{display:inline-block;background:rgba(255,255,255,.2);
+  border-radius:40px;padding:3px 10px;font-size:11px;font-weight:800;margin-top:8px;}
+.bn{text-align:right;}
+.bnl{font-size:11px;opacity:.7;margin-bottom:3px;}
+.bnv{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;opacity:.9;}
+.ph{display:flex;justify-content:space-between;font-size:12px;font-weight:700;
+  color:var(--mi);margin-bottom:6px;}
+.ph span:last-child{color:var(--bl);font-weight:800;}
+.pt{height:10px;background:#E8F0FB;border-radius:99px;overflow:hidden;margin-bottom:5px;}
+.pf{height:100%;background:linear-gradient(90deg,var(--bl),var(--cy));border-radius:99px;}
+.pa{display:flex;justify-content:space-between;font-size:11px;
+  color:var(--so);font-weight:600;margin-bottom:16px;}
+.cdt{font-size:11px;font-weight:800;color:var(--mi);text-align:center;margin-bottom:7px;}
+.cdr{display:flex;gap:6px;margin-bottom:16px;}
+.cdb{flex:1;background:var(--bg);border:1.5px solid var(--bo);
+  border-radius:10px;padding:10px 4px;text-align:center;}
+.cdn{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--bl);display:block;}
+.cdl{font-size:10px;font-weight:700;color:var(--so);}
+.tabs{display:flex;gap:6px;margin-bottom:12px;}
+.tab{flex:1;padding:9px;text-align:center;background:var(--bg);
+  border:1.5px solid var(--bo);border-radius:10px;cursor:pointer;
+  font-size:13px;font-weight:800;color:var(--so);transition:all .2s;}
+.tab.on{background:#EBF3FF;border-color:var(--bl);color:var(--bl);}
+.il{font-size:12px;font-weight:700;color:var(--mi);margin-bottom:5px;}
+.iw{display:flex;align-items:center;background:var(--bg);
+  border:1.5px solid var(--bo);border-radius:10px;overflow:hidden;
+  margin-bottom:8px;transition:border-color .2s;}
+.iw:focus-within{border-color:var(--bl);}
+.iw input{flex:1;background:none;border:none;outline:none;
+  color:var(--tx);font-family:'Nunito',sans-serif;
+  font-size:16px;font-weight:700;padding:12px 13px;}
+.iw input::placeholder{color:var(--so);}
+.it{padding:0 13px;font-size:13px;font-weight:800;color:var(--so);
+  border-left:1.5px solid var(--bo);}
+.am{text-align:center;font-size:18px;color:var(--bl2);margin:2px 0 7px;}
+.rb{background:#F0F9FF;border:1.5px solid #B8E0FF;border-radius:10px;
+  padding:12px 14px;display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:14px;}
+.rv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--bl);}
+.rt{font-size:13px;font-weight:800;color:var(--cy);}
+#btn-buy{width:100%;padding:14px;background:linear-gradient(135deg,var(--bl),var(--cy));
+  border:none;border-radius:12px;font-family:'Syne',sans-serif;
+  font-size:14px;font-weight:800;color:#fff;cursor:pointer;
+  box-shadow:0 6px 20px rgba(27,111,235,.3);
+  transition:opacity .2s,transform .1s;margin-bottom:10px;}
+#btn-buy:hover{opacity:.9;}
+#btn-buy:active{transform:scale(.98);}
+.cf{text-align:center;font-size:11px;color:var(--so);line-height:1.7;font-weight:600;}
+.cf a{color:var(--bl);}
+.wi{display:none;background:#EBF3FF;border:1.5px solid var(--bo);
+  border-radius:10px;padding:10px 13px;margin-bottom:10px;
+  font-size:12px;font-weight:700;color:var(--mi);}
+.wi.show{display:block;}
+.wa{color:var(--bl);font-size:11px;word-break:break-all;}
+
+/* ── HOW TO BUY ── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.step{background:var(--wh);border:1.5px solid var(--bo);
+  border-radius:var(--r);padding:22px 18px;transition:box-shadow .2s;}
+.step:hover{box-shadow:0 6px 24px rgba(27,111,235,.1);}
+.sico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:12px;
+  background:linear-gradient(135deg,#EBF3FF,#E0FAFB);}
+.sn{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  color:var(--bl2);letter-spacing:1px;margin-bottom:5px;}
+.stitle{font-size:14px;font-weight:800;margin-bottom:7px;}
+.sdesc{font-size:13px;font-weight:600;color:var(--mi);line-height:1.6;}
+
+/* ── STAKING ── */
+.skb{background:linear-gradient(135deg,var(--bl),#0E4DB8);
+  border-radius:var(--rl);padding:44px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  color:#fff;gap:28px;}
+.skb h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:10px;}
+.skb p{font-size:14px;font-weight:600;opacity:.8;line-height:1.75;max-width:420px;}
+.pills{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
+  border-radius:40px;padding:6px 14px;font-size:12px;font-weight:800;}
+.sapy{font-family:'Syne',sans-serif;font-size:60px;font-weight:800;
+  color:rgba(255,255,255,.9);line-height:1;text-align:center;flex-shrink:0;}
+.sapl{font-size:13px;font-weight:700;opacity:.7;margin-top:4px;text-align:center;}
+
+/* ── TOKENOMICS ── */
+.tkc{background:var(--wh);border:1.5px solid var(--bo);border-radius:var(--rl);
+  padding:36px;display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;}
+.dw{position:relative;width:180px;margin:0 auto;}
+.dc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.db{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--bl);}
+.ds{font-size:11px;font-weight:700;color:var(--so);}
+.leg{display:flex;flex-direction:column;gap:13px;}
+.lr{display:flex;align-items:center;gap:10px;}
+.ld{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
+.ln{flex:1;font-size:14px;font-weight:700;}
+.lp{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--bl);}
+.lb{height:4px;background:#E8F0FB;border-radius:2px;margin-top:4px;}
+.lf{height:4px;border-radius:2px;}
+
+/* ── ROADMAP ── */
+.rmbg{background:linear-gradient(135deg,#EBF3FF,#E0FAFB);}
+.rmt{position:relative;}
+.rmline{position:absolute;top:22px;left:5%;right:5%;height:3px;background:var(--bo);}
+.rmprog{position:absolute;top:22px;left:5%;width:12%;height:3px;
+  background:linear-gradient(90deg,var(--bl),var(--cy));}
+.rmn{display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:2;}
+.rmnode{display:flex;flex-direction:column;align-items:center;}
+.rmdot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:15px;font-weight:800;border:3px solid var(--bo);
+  background:var(--wh);margin-bottom:14px;color:var(--so);}
+.rmdot.act{border-color:var(--bl);color:var(--bl);box-shadow:0 0 0 5px rgba(27,111,235,.13);}
+.rmc{background:var(--wh);border:1.5px solid var(--bo);border-radius:var(--r);
+  padding:18px;width:88%;}
+.rmc.act{border-color:var(--bl);box-shadow:0 3px 16px rgba(27,111,235,.1);}
+.rmq{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--cy);margin-bottom:5px;}
+.rmt2{font-size:14px;font-weight:800;margin-bottom:9px;}
+.rmul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.rmul li{font-size:12px;font-weight:600;color:var(--mi);display:flex;gap:6px;}
+.rmul li::before{content:"→";color:var(--bl);font-weight:800;flex-shrink:0;}
+.rmst{display:inline-block;border-radius:40px;padding:4px 12px;
+  font-size:11px;font-weight:800;margin-top:10px;}
+.rmst.act{background:#EBF3FF;color:var(--bl);}
+.rmst.up{background:#F4F8FF;color:var(--so);}
+
+/* ── WHITEPAPER ── */
+.wpb{background:linear-gradient(135deg,#0D1B2E,#1B3A6B);border-radius:var(--rl);
+  padding:48px;display:flex;justify-content:space-between;
+  align-items:center;gap:32px;color:#fff;}
+.wpb h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:10px;}
+.wpb p{font-size:14px;font-weight:600;opacity:.75;line-height:1.75;max-width:400px;}
+.wps{display:flex;flex-direction:column;gap:9px;align-items:flex-start;margin-top:18px;}
+.wpi{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;opacity:.9;}
+.wpd{width:7px;height:7px;border-radius:50%;background:var(--cy);flex-shrink:0;}
+.btn-wp{background:linear-gradient(135deg,var(--cy),#00A0A8);color:#fff;
+  border:none;padding:14px 28px;border-radius:40px;
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  cursor:pointer;flex-shrink:0;transition:opacity .2s;}
+.btn-wp:hover{opacity:.88;}
+
+/* ── TRUST ── */
+.aug{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.auc{background:var(--wh);border:1.5px solid var(--bo);
+  border-radius:var(--r);padding:26px 22px;text-align:center;}
+.auico{font-size:28px;margin-bottom:12px;}
+.aut{font-size:15px;font-weight:800;margin-bottom:7px;}
+.aud{font-size:13px;font-weight:600;color:var(--mi);line-height:1.7;}
+.aubdg{display:inline-block;background:#EBF3FF;color:#185FA5;
+  border-radius:40px;padding:5px 14px;font-size:12px;font-weight:800;margin-top:10px;}
+
+/* ── FAQ ── */
+.faqw{background:var(--wh);border:1.5px solid var(--bo);border-radius:var(--rl);overflow:hidden;}
+.fqi{border-bottom:1.5px solid var(--bo);}
+.fqi:last-child{border-bottom:none;}
+.fqq{padding:17px 20px;cursor:pointer;display:flex;justify-content:space-between;
+  align-items:center;font-size:14px;font-weight:800;transition:background .15s;}
+.fqq:hover{background:#F7FAFF;}
+.fqico{width:24px;height:24px;border-radius:50%;background:#EBF3FF;color:var(--bl);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;flex-shrink:0;transition:all .25s;}
+.fqico.open{background:var(--bl);color:#fff;transform:rotate(45deg);}
+.fqa{max-height:0;overflow:hidden;transition:max-height .3s ease;
+  font-size:13px;font-weight:600;color:var(--mi);line-height:1.75;}
+.fqa.open{max-height:220px;}
+.fqai{padding:0 20px 16px;}
+
+/* ── DISCLAIMER ── */
+.disc{background:#FFFBEB;border-top:1.5px solid #FDE68A;
+  padding:16px 36px;font-size:12px;font-weight:600;
+  color:#92400E;text-align:center;line-height:1.7;}
+
+/* ── FOOTER ── */
+footer{background:var(--wh);border-top:1.5px solid var(--bo);padding:28px 36px;}
+.fi{max-width:1100px;margin:0 auto;display:flex;
+  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.flo{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;}
+.fls{display:flex;gap:20px;}
+.fls a{font-size:13px;font-weight:700;color:var(--so);}
+.fls a:hover{color:var(--bl);}
+.fcp{font-size:11px;font-weight:600;color:var(--so);}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;right:24px;z-index:999;
+  background:var(--wh);border:1.5px solid var(--bo);border-radius:var(--r);
+  padding:13px 18px;font-size:13px;font-weight:700;color:var(--tx);
+  max-width:320px;opacity:0;transition:opacity .3s;pointer-events:none;
+  box-shadow:0 4px 20px rgba(27,111,235,.12);}
+#toast.show{opacity:1;}
+
+@media(max-width:900px){
+  .hero-inner,.tkc{grid-template-columns:1fr;}
+  .steps,.rmn{grid-template-columns:1fr 1fr;}
+  .aug{grid-template-columns:1fr 1fr;}
+  .skb,.wpb{flex-direction:column;text-align:center;}
+  .hs{flex-wrap:wrap;}
+  .hst{min-width:45%;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo gr">XRPN</div>
+  <div class="nav-links">
+    <a href="#how">구매방법</a>
+    <a href="#staking">스테이킹</a>
+    <a href="#tokenomics">토크노믹스</a>
+    <a href="#roadmap">로드맵</a>
+    <a href="#whitepaper">백서</a>
+    <a href="#faq">FAQ</a>
+    <button id="btn-connect" onclick="connectWallet()">🔗 지갑 연결</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="bdg"><span class="dot"></span>프리세일 진행 중 · LIVE</div>
+      <h1 class="h1">XRP를<br><span class="gr">초기 가격으로</span><br>다시 살 기회</h1>
+
+      <div class="price-compare">
+        <div class="pc-title">XRP 현재 가격 vs XRPN 프리세일 가격</div>
+        <div class="pc-row">
+          <div class="pc-item">
+            <div class="pc-lbl">XRPN 프리세일</div>
+            <div class="pc-price now">$0.0028</div>
+          </div>
+          <div class="pc-arrow">→</div>
+          <div class="pc-item">
+            <div class="pc-lbl">XRP 현재 가격</div>
+            <div class="pc-price xrp" id="xrp-price">$2.18</div>
+          </div>
+          <div class="pc-arrow">→</div>
+          <div class="pc-gain">
+            <div class="pc-gain-val" id="xrp-mult">×778</div>
+            <div class="pc-gain-lbl">XRP 대비 상승 여력</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hooks">
+        <div class="hook">
+          <span class="hook-ico">🎯</span>
+          <div>XRP가 $1이었을 때 못 샀다면, <strong>XRPN은 지금이 그 기회입니다</strong></div>
+        </div>
+        <div class="hook">
+          <span class="hook-ico">💰</span>
+          <div>프리세일 참여자에게 <strong>스테이킹 리워드</strong>로 수익을 분배합니다</div>
+        </div>
+        <div class="hook">
+          <span class="hook-ico">🔒</span>
+          <div>단계별 가격 인상 — <strong>지금 들어올수록 낮은 단가</strong></div>
+        </div>
+      </div>
+
+      <div class="hs">
+        <div class="hst"><div class="hv">$0.0028</div><div class="hl">현재 단계 가격</div></div>
+        <div class="hst"><div class="hv" id="h-xrp">$2.18</div><div class="hl">XRP 현재 가격</div></div>
+        <div class="hst"><div class="hv">$2.54M</div><div class="hl">총 모금액</div></div>
+        <div class="hst"><div class="hv">+15%</div><div class="hl">스테이킹 보너스</div></div>
+      </div>
+    </div>
+
+    <!-- 구매 카드 -->
+    <div class="bc">
+      <div class="wi" id="wallet-info">
+        <div>연결된 지갑</div>
+        <div class="wa" id="wallet-addr">—</div>
+      </div>
+      <div class="bct">
+        <div class="bcr">
+          <div>
+            <div class="bcl">현재 단계 가격</div>
+            <div class="bcp">$0.0028</div>
+            <div class="bcb">2단계 / 8단계</div>
+          </div>
+          <div class="bn">
+            <div class="bnl">다음 단계 (2일 후)</div>
+            <div class="bnv">$0.0035 ↑</div>
+          </div>
+        </div>
+      </div>
+      <div class="ph"><span>모금 현황</span><span>50.8% 달성</span></div>
+      <div class="pt"><div class="pf" style="width:50.8%"></div></div>
+      <div class="pa"><span>$2,540,320 모금됨</span><span>목표 $5,000,000</span></div>
+      <div class="cdt">⏰ 다음 가격 인상까지</div>
+      <div class="cdr">
+        <div class="cdb"><span class="cdn" id="cd-d">01</span><span class="cdl">일</span></div>
+        <div class="cdb"><span class="cdn" id="cd-h">23</span><span class="cdl">시간</span></div>
+        <div class="cdb"><span class="cdn" id="cd-m">41</span><span class="cdl">분</span></div>
+        <div class="cdb"><span class="cdn" id="cd-s">07</span><span class="cdl">초</span></div>
+      </div>
+      <div class="tabs">
+        <div class="tab on" id="t-eth" onclick="setTab('eth')">ETH로 구매</div>
+        <div class="tab" id="t-usdt" onclick="setTab('usdt')">USDT로 구매</div>
+      </div>
+      <div class="il" id="inp-lbl">지불할 ETH 수량</div>
+      <div class="iw">
+        <input id="pay-input" type="number" placeholder="0.00" step="0.001" oninput="calc()"/>
+        <span class="it" id="inp-tag">ETH</span>
+      </div>
+      <div class="am">↓</div>
+      <div class="il">받을 XRPN 수량</div>
+      <div class="rb"><span class="rv" id="recv-val">—</span><span class="rt">XRPN</span></div>
+      <button id="btn-buy" onclick="handleBuy()">🔗 지갑 연결 후 구매하기</button>
+      <div class="cf">프리세일 종료 후 클레임 · 즉시 스테이킹 시 <a href="#staking">+15% 보너스</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO BUY -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <h2 class="st">구매 방법</h2>
+    <p class="ss">4단계로 간편하게 XRPN을 구매하세요</p>
+    <div class="steps">
+      <div class="step">
+        <div class="sico">🔗</div>
+        <div class="sn">STEP 01</div>
+        <div class="stitle">지갑 연결</div>
+        <div class="sdesc">MetaMask 또는 WalletConnect로 이더리움 지갑을 연결합니다.</div>
+      </div>
+      <div class="step">
+        <div class="sico">💳</div>
+        <div class="sn">STEP 02</div>
+        <div class="stitle">결제 수단 선택</div>
+        <div class="sdesc">ETH 또는 USDT를 선택하고 수량을 입력하면 XRPN 수량이 자동 계산됩니다.</div>
+      </div>
+      <div class="step">
+        <div class="sico">✅</div>
+        <div class="sn">STEP 03</div>
+        <div class="stitle">트랜잭션 승인</div>
+        <div class="sdesc">MetaMask에서 서명하면 즉시 완료. USDT는 Approve 절차가 추가됩니다.</div>
+      </div>
+      <div class="step">
+        <div class="sico">🎁</div>
+        <div class="sn">STEP 04</div>
+        <div class="stitle">클레임 / 스테이킹</div>
+        <div class="sdesc">상장 후 클레임하거나, 즉시 스테이킹 선택 시 +15% 보너스를 받으세요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- STAKING -->
+<section class="sec" id="staking">
+  <div class="wrap">
+    <div class="skb">
+      <div>
+        <h2>스테이킹으로<br>수익을 분배받으세요</h2>
+        <p>프리세일 참여자는 스테이킹을 통해 지속적인 리워드를 받을 수 있습니다. 프리세일 종료 후 클레임 대신 즉시 스테이킹 참여 시 15% 추가 보너스 이율이 적용됩니다.</p>
+        <div class="pills">
+          <div class="pill">🔒 락업 보너스 +15%</div>
+          <div class="pill">📈 매일 리워드 적립</div>
+          <div class="pill">🛡️ Gnosis Safe 멀티시그</div>
+        </div>
+      </div>
+      <div>
+        <div class="sapy">15%</div>
+        <div class="sapl">스테이킹 보너스</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- TOKENOMICS -->
+<section class="sec" id="tokenomics">
+  <div class="wrap">
+    <h2 class="st">토크노믹스</h2>
+    <p class="ss">총 발행량 1,000억 XRPN · 투명하게 공개된 배분 구조</p>
+    <div class="tkc">
+      <div class="dw">
+        <svg viewBox="0 0 200 200" width="180" height="180">
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#EBF3FF" stroke-width="34"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#1B6FEB" stroke-width="34" stroke-dasharray="135.7 316.7" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#00C6CF" stroke-width="34" stroke-dasharray="113.1 339.3" stroke-dashoffset="-135.7" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#4A90FF" stroke-width="34" stroke-dasharray="90.5 361.9" stroke-dashoffset="-248.8" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#FFB800" stroke-width="34" stroke-dasharray="67.9 384.5" stroke-dashoffset="-339.3" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="72" fill="none" stroke="#E07AFF" stroke-width="34" stroke-dasharray="45.2 407.2" stroke-dashoffset="-407.2" transform="rotate(-90 100 100)"/>
+        </svg>
+        <div class="dc"><div class="db">100B</div><div class="ds">총 발행량</div></div>
+      </div>
+      <div class="leg">
+        <div><div class="lr"><div class="ld" style="background:#1B6FEB"></div><span class="ln">프리세일</span><span class="lp">30%</span></div><div class="lb"><div class="lf" style="width:100%;background:#1B6FEB"></div></div></div>
+        <div><div class="lr"><div class="ld" style="background:#00C6CF"></div><span class="ln">스테이킹 리워드</span><span class="lp">25%</span></div><div class="lb"><div class="lf" style="width:83%;background:#00C6CF"></div></div></div>
+        <div><div class="lr"><div class="ld" style="background:#4A90FF"></div><span class="ln">유동성 풀 (DEX)</span><span class="lp">20%</span></div><div class="lb"><div class="lf" style="width:67%;background:#4A90FF"></div></div></div>
+        <div><div class="lr"><div class="ld" style="background:#FFB800"></div><span class="ln">팀 / 어드바이저 (12개월 락업)</span><span class="lp">15%</span></div><div class="lb"><div class="lf" style="width:50%;background:#FFB800"></div></div></div>
+        <div><div class="lr"><div class="ld" style="background:#E07AFF"></div><span class="ln">생태계 개발 펀드</span><span class="lp">10%</span></div><div class="lb"><div class="lf" style="width:33%;background:#E07AFF"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ROADMAP -->
+<section class="sec rmbg" id="roadmap">
+  <div class="wrap">
+    <h2 class="st">로드맵</h2>
+    <p class="ss">XRPN의 단계별 개발 및 출시 계획</p>
+    <div class="rmt">
+      <div class="rmline"></div>
+      <div class="rmprog"></div>
+      <div class="rmn">
+        <div class="rmnode">
+          <div class="rmdot act">1</div>
+          <div class="rmc act">
+            <div class="rmq">Q1–Q2 2026</div>
+            <div class="rmt2">프로젝트 기반 구축</div>
+            <ul class="rmul">
+              <li>공식 웹사이트 오픈</li>
+              <li>백서 공개</li>
+              <li>프리세일 오픈</li>
+              <li>커뮤니티 채널 개설</li>
+            </ul>
+            <span class="rmst act">🔵 진행 중</span>
+          </div>
+        </div>
+        <div class="rmnode">
+          <div class="rmdot">2</div>
+          <div class="rmc">
+            <div class="rmq">Q2–Q3 2026</div>
+            <div class="rmt2">프리세일 완료</div>
+            <ul class="rmul">
+              <li>8단계 프리세일 완료</li>
+              <li>CEX 상장 협의</li>
+              <li>스테이킹 컨트랙트 배포</li>
+            </ul>
+            <span class="rmst up">⏳ 예정</span>
+          </div>
+        </div>
+        <div class="rmnode">
+          <div class="rmdot">3</div>
+          <div class="rmc">
+            <div class="rmq">Q3 2026</div>
+            <div class="rmt2">DEX 상장 & 클레임</div>
+            <ul class="rmul">
+              <li>유니스왑 V3 유동성 공급</li>
+              <li>토큰 클레임 활성화</li>
+              <li>스테이킹 리워드 배분 시작</li>
+              <li>파트너십 발표</li>
+            </ul>
+            <span class="rmst up">⏳ 예정</span>
+          </div>
+        </div>
+        <div class="rmnode">
+          <div class="rmdot">4</div>
+          <div class="rmc">
+            <div class="rmq">Q4 2026</div>
+            <div class="rmt2">생태계 확장</div>
+            <ul class="rmul">
+              <li>주요 CEX 상장</li>
+              <li>DeFi 프로토콜 통합</li>
+              <li>XRPN Pay 결제 솔루션</li>
+              <li>거버넌스 V2 도입</li>
+            </ul>
+            <span class="rmst up">⏳ 예정</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- WHITEPAPER -->
+<section class="sec" id="whitepaper">
+  <div class="wrap">
+    <div class="wpb">
+      <div>
+        <h2>백서 (Whitepaper)</h2>
+        <p>XRPN의 토크노믹스, 스테이킹 메커니즘, 로드맵, 팀 정보를 담은 공식 백서입니다. 투자 전 반드시 확인해주세요.</p>
+        <div class="wps">
+          <div class="wpi"><div class="wpd"></div>토큰 구조 및 스테이킹 메커니즘 설명</div>
+          <div class="wpi"><div class="wpd"></div>토크노믹스 및 락업 일정 상세 내역</div>
+          <div class="wpi"><div class="wpd"></div>스테이킹 리워드 계산 방식</div>
+          <div class="wpi"><div class="wpd"></div>팀 소개 및 프로젝트 비전</div>
+          <div class="wpi"><div class="wpd"></div>법적 고지 및 리스크 고지 사항</div>
+        </div>
+      </div>
+      <button class="btn-wp" onclick="showToast('백서 PDF 준비 중입니다. 곧 공개됩니다.')">📄 백서 다운로드</button>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- TRUST -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="st">신뢰할 수 있는 이유</h2>
+    <p class="ss">투명하고 안전한 운영을 약속합니다</p>
+    <div class="aug">
+      <div class="auc">
+        <div class="auico">🔐</div>
+        <div class="aut">멀티시그 자금 보관</div>
+        <div class="aud">프리세일 자금은 Gnosis Safe 멀티시그 지갑에 보관됩니다. 팀 단독 출금은 구조적으로 불가합니다.</div>
+        <span class="aubdg">Gnosis Safe</span>
+      </div>
+      <div class="auc">
+        <div class="auico">📋</div>
+        <div class="aut">컨트랙트 검증</div>
+        <div class="aud">스마트 컨트랙트 소스코드는 Etherscan에 공개·검증되어 누구나 확인할 수 있습니다.</div>
+        <span class="aubdg">Etherscan Verified</span>
+      </div>
+      <div class="auc">
+        <div class="auico">👤</div>
+        <div class="aut">실명 운영</div>
+        <div class="aud">프로젝트 운영자는 실명으로 공개되며, 책임감 있는 투명한 운영을 원칙으로 합니다.</div>
+        <span class="aubdg">Doxxed Team</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <h2 class="st">자주 묻는 질문</h2>
+    <p class="ss">궁금한 점을 확인하세요</p>
+    <div class="faqw">
+      <div class="fqi">
+        <div class="fqq" onclick="faq(this)"><span>XRPN 토큰은 언제 받을 수 있나요?</span><div class="fqico">+</div></div>
+        <div class="fqa"><div class="fqai">프리세일 전 단계 종료 및 DEX 상장 시점에 클레임 버튼이 활성화됩니다. 즉시 스테이킹을 선택하면 15% 추가 보너스 이율이 적용됩니다.</div></div>
+      </div>
+      <div class="fqi">
+        <div class="fqq" onclick="faq(this)"><span>ETH와 USDT 중 어떤 결제가 더 유리한가요?</span><div class="fqico">+</div></div>
+        <div class="fqa"><div class="fqai">ETH는 Chainlink 실시간 가격으로 계산되어 시세 변동의 영향을 받습니다. 구매 수량을 정확히 예측하고 싶다면 USDT($1 고정)가 더 안정적입니다.</div></div>
+      </div>
+      <div class="fqi">
+        <div class="fqq" onclick="faq(this)"><span>프리세일 자금은 어떻게 관리되나요?</span><div class="fqico">+</div></div>
+        <div class="fqa"><div class="fqai">모든 프리세일 자금은 Gnosis Safe 멀티시그 지갑에 보관됩니다. 여러 서명자의 동의 없이는 출금이 불가능합니다.</div></div>
+      </div>
+      <div class="fqi">
+        <div class="fqq" onclick="faq(this)"><span>단계가 올라가면 기존 구매자에게 영향이 있나요?</span><div class="fqico">+</div></div>
+        <div class="fqa"><div class="fqai">없습니다. 이미 구매한 수량의 단가는 고정됩니다. 조기 참여자는 낮은 단가의 혜택을 그대로 유지합니다.</div></div>
+      </div>
+      <div class="fqi">
+        <div class="fqq" onclick="faq(this)"><span>스테이킹 리워드는 어떻게 계산되나요?</span><div class="fqico">+</div></div>
+        <div class="fqa"><div class="fqai">스테이킹 참여자는 전체 스테이킹 물량 대비 본인 보유 비율에 따라 리워드를 분배받습니다. 자세한 계산 방식은 백서에서 확인하실 수 있습니다.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disc">
+  ⚠️ 본 내용은 투자 권유가 아닙니다. 암호화폐 투자에는 원금 손실 위험이 있으며, 투자 결정은 반드시 본인의 판단 하에 이루어져야 합니다.
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="flo gr">XRPN</div>
+    <div class="fcp">© 2026 XRPN · All rights reserved.</div>
+    <div class="fls">
+      <a href="#">Twitter</a>
+      <a href="#">Telegram</a>
+      <a href="#">GitHub</a>
+      <a href="#whitepaper">백서</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+// 카운트다운
+let sec = 1*86400 + 23*3600 + 41*60 + 7;
+setInterval(() => {
+  if (sec <= 0) return; sec--;
+  const p = n => String(n).padStart(2,'0');
+  document.getElementById('cd-d').textContent = p(Math.floor(sec/86400));
+  document.getElementById('cd-h').textContent = p(Math.floor(sec%86400/3600));
+  document.getElementById('cd-m').textContent = p(Math.floor(sec%3600/60));
+  document.getElementById('cd-s').textContent = p(sec%60);
+}, 1000);
+
+// 탭 전환
+let tab = 'eth', ETH_PRICE = 3150, XRPN_PRICE = 0.0028, walletConnected = false;
+function setTab(t) {
+  tab = t;
+  ['eth','usdt'].forEach(x => document.getElementById('t-'+x).classList.toggle('on', x===t));
+  document.getElementById('inp-lbl').textContent = t==='eth' ? '지불할 ETH 수량' : '지불할 USDT 수량';
+  document.getElementById('inp-tag').textContent = t==='eth' ? 'ETH' : 'USDT';
+  document.getElementById('pay-input').value = '';
+  document.getElementById('recv-val').textContent = '—';
+}
+
+// 수량 계산
+function calc() {
+  const v = parseFloat(document.getElementById('pay-input').value) || 0;
+  const usd = tab === 'eth' ? v * ETH_PRICE : v;
+  document.getElementById('recv-val').textContent = v > 0 ? Math.floor(usd / XRPN_PRICE).toLocaleString() : '—';
+}
+
+// 지갑 연결
+async function connectWallet() {
+  if (!window.ethereum) { showToast('MetaMask가 필요합니다.'); return; }
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const addr = accounts[0];
+    const short = addr.slice(0,6) + '...' + addr.slice(-4);
+    document.getElementById('btn-connect').textContent = '✅ ' + short;
+    document.getElementById('wallet-info').classList.add('show');
+    document.getElementById('wallet-addr').textContent = addr;
+    document.getElementById('btn-buy').textContent = '💸 지금 구매하기';
+    walletConnected = true;
+    showToast('지갑 연결 완료: ' + short);
+  } catch(e) { showToast('연결 실패: ' + e.message); }
+}
+
+// 구매 처리
+function handleBuy() {
+  if (!walletConnected) { connectWallet(); return; }
+  const v = parseFloat(document.getElementById('pay-input').value) || 0;
+  if (!v) { showToast('수량을 입력해주세요.'); return; }
+  showToast(tab === 'eth'
+    ? `ETH ${v} 구매 요청 중... MetaMask를 확인하세요.`
+    : `USDT ${v} 구매 요청 중... Approve 후 Buy가 진행됩니다.`);
+}
+
+// FAQ 토글
+function faq(el) {
+  const a = el.nextElementSibling, ico = el.querySelector('.fqico');
+  const was = a.classList.contains('open');
+  document.querySelectorAll('.fqa').forEach(x => x.classList.remove('open'));
+  document.querySelectorAll('.fqico').forEach(x => { x.classList.remove('open'); x.textContent = '+'; });
+  if (!was) { a.classList.add('open'); ico.classList.add('open'); }
+}
+
+// 토스트
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+window.__xrpnToast = showToast;
+</script>
+</body>
+</html>
