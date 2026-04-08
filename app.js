@@ -44,7 +44,10 @@ async function updateXRPPrice() {
 
     if (profitEl) {
       const projected = 100 * mult;
-      profitEl.innerHTML = "$100 today could represent <strong>" + formatMoney(projected, 0) + "</strong> if XRPN reaches XRP’s current price.";
+      profitEl.innerHTML =
+        "$100 today could represent <strong>" +
+        formatMoney(projected, 0) +
+        "</strong> if XRPN reaches XRP’s current price.";
     }
 
     if (liveBarText) liveBarText.textContent = formatMoney(price, 2);
@@ -183,6 +186,7 @@ function initFaq() {
   });
 }
 
+/* 검색 불가능한 가짜 지갑 표시 */
 function randomPseudoPart(length) {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
   let out = "";
