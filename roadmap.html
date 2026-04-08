@@ -1,16 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Roadmap</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XRPN Roadmap</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background:#0b0f1a;color:#fff;font-family:Arial;">
-<div style="max-width:900px;margin:auto;padding:40px;">
-<h1>Roadmap</h1>
-<p>Q1 2026 — Presale</p>
-<p>Q2 2026 — DEX Listing</p>
-<p>Q3 2026 — Staking</p>
-<a href="index.html">← Back</a>
-</div>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">X</div>
+        <div>
+          <div class="brand-text">XRPN</div>
+          <div class="brand-sub">XRP NEO Protocol</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn secondary" onclick="connectWallet()">Connect Wallet</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-box">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Development Plan</div>
+          <h1>A roadmap investors can read in 20 seconds.</h1>
+          <p>
+            Good roadmap pages reduce uncertainty. Instead of vague promises, XRPN presents a phased structure that connects launch,
+            token claim, staking activation, and ecosystem expansion into one simple progression.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container timeline-card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Q1–Q2</div>
+            <div class="timeline-box">
+              <h4>Foundation & Presale Launch</h4>
+              <ul>
+                <li>Official website launch</li>
+                <li>Brand positioning and public rollout</li>
+                <li>Whitepaper publication</li>
+                <li>Presale goes live</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Q2–Q3</div>
+            <div class="timeline-box">
+              <h4>Presale Completion & Market Preparation</h4>
+              <ul>
+                <li>All presale stages completed</li>
+                <li>Exchange and listing discussions</li>
+                <li>Community growth and campaign expansion</li>
+                <li>Claim system and staking preparation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Q3</div>
+            <div class="timeline-box">
+              <h4>Token Claim, DEX Liquidity & Staking Activation</h4>
+              <ul>
+                <li>Claim portal goes live</li>
+                <li>Initial liquidity deployment</li>
+                <li>Staking mechanics activated</li>
+                <li>Reward distribution begins</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Q4</div>
+            <div class="timeline-box">
+              <h4>Ecosystem Expansion</h4>
+              <ul>
+                <li>Broader exchange visibility</li>
+                <li>Partnership exploration</li>
+                <li>Product utility framing</li>
+                <li>Governance and ecosystem roadmap extension</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-3">
+        <div class="card">
+          <div class="icon-circle">Ⅰ</div>
+          <h3>Readable</h3>
+          <p>Investors should understand the plan immediately, without decoding jargon-heavy crypto language.</p>
+        </div>
+        <div class="card">
+          <div class="icon-circle">Ⅱ</div>
+          <h3>Sequenced</h3>
+          <p>Each phase builds naturally on the previous one: sale, claim, liquidity, staking, then ecosystem growth.</p>
+        </div>
+        <div class="card">
+          <div class="icon-circle">Ⅲ</div>
+          <h3>Investor-friendly</h3>
+          <p>The page reassures users that the project is not built as a one-page cash grab, but as a structured launch narrative.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand-text">XRPN</div>
+        <small>XRPN — XRP NEO Protocol</small>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
 </body>
 </html>
