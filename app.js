@@ -25,6 +25,9 @@ async function updateXRPPrice() {
   const priceEl = document.getElementById("xrp-price");
   const multEl = document.getElementById("xrp-mult");
   const profitEl = document.getElementById("profit-box");
+  const liveBarText = document.getElementById("live-xrp-bar");
+  const liveBarFill = document.getElementById("live-xrp-fill");
+
   if (!priceEl || !multEl) return;
 
   try {
@@ -34,37 +37,35 @@ async function updateXRPPrice() {
 
     if (!price) throw new Error("No price");
 
-    priceEl.textContent = formatMoney(price, 2);
+    priceEl.textContent = "XRP Live: " + formatMoney(price, 2);
 
     const mult = price / XRPN_PRICE;
-    multEl.textContent = "If XRPN reaches XRP’s current price: up to " + Math.round(mult) + "x";
+    const rounded = Math.round(mult);
+    multEl.textContent = rounded + "x vs live XRP";
 
     if (profitEl) {
       const projected = 100 * mult;
-      profitEl.innerHTML =
-        "$100 today could represent <strong>" +
-        formatMoney(projected, 0) +
-        "</strong> if XRPN reaches XRP’s current price.";
+      profitEl.innerHTML = "$100 today could represent <strong>" + formatMoney(projected, 0) + "</strong> if XRPN reaches XRP’s current price.";
     }
 
-    const liveXrpBar = document.getElementById("live-xrp-bar");
-    const liveXrpFill = document.getElementById("live-xrp-fill");
-    if (liveXrpBar) liveXrpBar.textContent = formatMoney(price, 2);
-    if (liveXrpFill) {
+    if (liveBarText) liveBarText.textContent = formatMoney(price, 2);
+    if (liveBarFill) {
       const pct = Math.min(100, Math.max(8, (price / 2.5) * 100));
-      liveXrpFill.style.width = pct + "%";
+      liveBarFill.style.width = pct + "%";
     }
   } catch (e) {
-    priceEl.textContent = "Unavailable";
-    multEl.textContent = "Live XRP price temporarily unavailable.";
+    priceEl.textContent = "XRP Live: Unavailable";
+    multEl.textContent = "Comparison temporarily unavailable";
     if (profitEl) {
       profitEl.textContent = "Projection will appear once the live XRP price loads again.";
     }
+    if (liveBarText) liveBarText.textContent = "—";
   }
 }
 
 function setPaymentTab(token) {
   activeToken = token;
+
   const ethBtn = document.getElementById("tab-eth");
   const usdtBtn = document.getElementById("tab-usdt");
   const label = document.getElementById("pay-label");
@@ -110,6 +111,7 @@ function startCountdown() {
   };
 
   render();
+
   setInterval(() => {
     if (seconds > 0) seconds--;
     render();
@@ -173,9 +175,7 @@ function initFaq() {
       const open = answer.classList.contains("open");
 
       document.querySelectorAll(".faq-a").forEach(a => a.classList.remove("open"));
-      document.querySelectorAll(".faq-icon").forEach(i => {
-        i.textContent = "+";
-      });
+      document.querySelectorAll(".faq-icon").forEach(i => i.textContent = "+");
 
       if (!open) {
         answer.classList.add("open");
@@ -185,7 +185,7 @@ function initFaq() {
   });
 }
 
-/* 검색 불가능한 가짜 지갑 아이디 생성 */
+/* 검색 불가능한 가짜 주소 스타일 생성 */
 function randomPseudoPart(length) {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
   let out = "";
@@ -199,7 +199,6 @@ function makePseudoWalletId() {
   return "0x" + randomPseudoPart(2) + "..." + randomPseudoPart(1) + randomPseudoPart(3);
 }
 
-/* 가짜 구매 알림 */
 function startSocialProof() {
   setInterval(() => {
     const wallet = makePseudoWalletId();
