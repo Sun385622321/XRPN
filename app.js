@@ -34,7 +34,6 @@ async function updateXRPPrice() {
     const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ripple&vs_currencies=usd");
     const data = await res.json();
     const price = data?.ripple?.usd;
-
     if (!price) throw new Error("No price");
 
     priceEl.textContent = "XRP Live: " + formatMoney(price, 2);
@@ -111,7 +110,6 @@ function startCountdown() {
   };
 
   render();
-
   setInterval(() => {
     if (seconds > 0) seconds--;
     render();
@@ -185,7 +183,6 @@ function initFaq() {
   });
 }
 
-/* 검색 불가능한 가짜 주소 스타일 생성 */
 function randomPseudoPart(length) {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
   let out = "";
