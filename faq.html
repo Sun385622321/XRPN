@@ -1,15 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>FAQ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XRPN FAQ</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background:#0b0f1a;color:#fff;font-family:Arial;">
-<div style="max-width:900px;margin:auto;padding:40px;">
-<h1>FAQ</h1>
-<p>When can I claim tokens? → After presale</p>
-<p>How to buy? → Connect wallet</p>
-<a href="index.html">← Back</a>
-</div>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">X</div>
+        <div>
+          <div class="brand-text">XRPN</div>
+          <div class="brand-sub">XRP NEO Protocol</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn secondary" onclick="connectWallet()">Connect Wallet</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-box">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Common Questions</div>
+          <h1>Clear answers, presented the right way.</h1>
+          <p>
+            FAQ pages are not filler. They remove hesitation right before purchase by answering the few key questions users always have:
+            timing, claim, payment flow, pricing, and staking behavior.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container faq-list">
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>When can users claim XRPN tokens?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            XRPN claim is positioned to open after the presale ends and the project activates the claim phase. This keeps the user flow
+            consistent with the launch roadmap.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>Why compare XRPN to XRP?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            The comparison is part of the project narrative. XRPN is presented as an XRP NEO concept, giving users a simple way to think
+            about early-stage entry versus an already-priced market benchmark.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>Can users buy with ETH and USDT?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            The interface is designed to support both ETH and USDT purchase flows. In a live production setup, those buttons would connect
+            to the actual presale contract and approval logic.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>How does the stage pricing model work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            Each presale stage has its own price. When a stage ends or its allocation is completed, the price moves to the next predefined
+            level. This rewards earlier participation.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>What is the staking bonus concept?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            The early staking bonus is presented as an additional incentive for users who choose long-term participation immediately after
+            they become eligible to claim.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>Is the live XRP price static?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">
+            No. The homepage is designed to fetch XRP’s live price dynamically so the benchmark comparison updates automatically instead of
+            staying fixed to an outdated value.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand-text">XRPN</div>
+        <small>XRPN — XRP NEO Protocol</small>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="whitepaper.html">Whitepaper</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
 </body>
 </html>
