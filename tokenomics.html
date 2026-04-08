@@ -1,20 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Tokenomics</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XRPN Tokenomics</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background:#0b0f1a;color:#fff;font-family:Arial;">
-<div style="max-width:900px;margin:auto;padding:40px;">
-<h1>Tokenomics</h1>
-<ul>
-<li>Presale: 30%</li>
-<li>Staking: 25%</li>
-<li>Liquidity: 20%</li>
-<li>Team: 15%</li>
-<li>Development: 10%</li>
-</ul>
-<a href="index.html">← Back</a>
-</div>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">X</div>
+        <div>
+          <div class="brand-text">XRPN</div>
+          <div class="brand-sub">XRP NEO Protocol</div>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="tokenomics.html">Tokenomics</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn secondary" onclick="connectWallet()">Connect Wallet</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-box">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Token Allocation</div>
+          <h1>Transparent tokenomics, designed for long-term structure.</h1>
+          <p>
+            XRPN is framed around clarity: a defined supply, visible allocation categories, a staking-oriented reward pool,
+            and a cleaner distribution model that avoids cluttered meme-token presentation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container token-card">
+        <div class="token-layout">
+          <div class="donut-wrap">
+            <svg viewBox="0 0 220 220" width="220" height="220" aria-hidden="true">
+              <circle cx="110" cy="110" r="72" fill="none" stroke="#efeff1" stroke-width="30"/>
+              <circle cx="110" cy="110" r="72" fill="none" stroke="#111111" stroke-width="30"
+                      stroke-dasharray="136 452" stroke-dashoffset="0" transform="rotate(-90 110 110)"/>
+              <circle cx="110" cy="110" r="72" fill="none" stroke="#404040" stroke-width="30"
+                      stroke-dasharray="113 475" stroke-dashoffset="-136" transform="rotate(-90 110 110)"/>
+              <circle cx="110" cy="110" r="72" fill="none" stroke="#6b6b6b" stroke-width="30"
+                      stroke-dasharray="90 498" stroke-dashoffset="-249" transform="rotate(-90 110 110)"/>
+              <circle cx="110" cy="110" r="72" fill="none" stroke="#919191" stroke-width="30"
+                      stroke-dasharray="68 520" stroke-dashoffset="-339" transform="rotate(-90 110 110)"/>
+              <circle cx="110" cy="110" r="72" fill="none" stroke="#b8b8b8" stroke-width="30"
+                      stroke-dasharray="45 543" stroke-dashoffset="-407" transform="rotate(-90 110 110)"/>
+              <text x="110" y="106" text-anchor="middle" font-size="22" font-weight="800" fill="#111" font-family="Manrope">100B</text>
+              <text x="110" y="128" text-anchor="middle" font-size="12" fill="#5f6368" font-family="Inter">Total Supply</text>
+            </svg>
+          </div>
+
+          <div class="legend">
+            <div class="legend-row"><div class="legend-dot" style="background:#111"></div><span>Presale Allocation</span><strong>30%</strong></div>
+            <div class="legend-row"><div class="legend-dot" style="background:#404040"></div><span>Staking Rewards</span><strong>25%</strong></div>
+            <div class="legend-row"><div class="legend-dot" style="background:#6b6b6b"></div><span>Liquidity Pool</span><strong>20%</strong></div>
+            <div class="legend-row"><div class="legend-dot" style="background:#919191"></div><span>Team & Advisors</span><strong>15%</strong></div>
+            <div class="legend-row"><div class="legend-dot" style="background:#b8b8b8"></div><span>Ecosystem Development</span><strong>10%</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <div class="chart-card">
+          <h3>Allocation rationale</h3>
+          <p>
+            The largest combined portions are reserved for presale participation, long-term staking incentives, and liquidity support.
+            This balance creates a cleaner economic story than highly fragmented micro-allocations.
+          </p>
+
+          <div class="chart">
+            <div class="bar-row">
+              <div class="bar-label"><span>Presale</span><span>30%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:30%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Staking Rewards</span><span>25%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Liquidity</span><span>20%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Team & Advisors</span><span>15%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Development Fund</span><span>10%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:10%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Why this works visually and strategically</h3>
+          <p>
+            Users usually want tokenomics to answer three questions fast: who gets what, why it matters, and whether the structure
+            feels disciplined. The goal here is to make that understanding immediate.
+          </p>
+
+          <div class="note-list" style="margin-top:18px">
+            <div class="note-card"><p><strong>Presale share:</strong> large enough to feel meaningful to early entrants.</p></div>
+            <div class="note-card"><p><strong>Reward pool:</strong> supports the staking narrative beyond launch.</p></div>
+            <div class="note-card"><p><strong>Liquidity reserve:</strong> signals post-presale market readiness.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand-text">XRPN</div>
+        <small>XRPN — XRP NEO Protocol</small>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="staking.html">Staking</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="whitepaper.html">Whitepaper</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
 </body>
 </html>
