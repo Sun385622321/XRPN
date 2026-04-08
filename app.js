@@ -1,197 +1,712 @@
-const XRPN_PRICE = 0.0028;
-const ETH_PRICE = 3150;
-let activeToken = "ETH";
-let walletConnected = false;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Chakra+Petch:wght@500;600;700&display=swap');
 
-function formatMoney(value, digits = 2) {
-  return "$" + Number(value).toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits
-  });
+:root{
+  --bg:#060606;
+  --bg-2:#0d0d0d;
+  --panel:#111111;
+  --panel-2:#171717;
+  --panel-3:#1d1d1d;
+  --line:#2a2a2a;
+  --line-strong:#3a3a3a;
+
+  --text:#f5f5f5;
+  --muted:#a7a7a7;
+
+  --gold:#d4a63a;
+  --gold-2:#f0c96a;
+  --gold-soft:#241d0d;
+  --gold-soft-2:#2b2412;
+
+  --green:#2dc653;
+
+  --shadow:0 18px 60px rgba(0,0,0,.35);
+  --radius:22px;
+  --radius-sm:14px;
+  --max:1240px;
 }
 
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(window.__toastTimer);
-  window.__toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3200);
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+img{max-width:100%;display:block}
+
+.container{
+  width:min(var(--max), calc(100% - 40px));
+  margin:0 auto;
 }
 
-async function updateXRPPrice() {
-  const priceEl = document.getElementById("xrp-price");
-  const multEl = document.getElementById("xrp-mult");
-  const profitEl = document.getElementById("profit-box");
-  const liveBarText = document.getElementById("live-xrp-bar");
-  const liveBarFill = document.getElementById("live-xrp-fill");
+/* header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(6,6,6,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand-mark{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  border:1px solid var(--line-strong);
+  background:#0b0b0b;
+  color:var(--gold-2);
+  display:grid;
+  place-items:center;
+  font-family:'Chakra Petch',sans-serif;
+  font-weight:700;
+  font-size:20px;
+}
+.brand-text{
+  font-family:'Chakra Petch',sans-serif;
+  font-size:22px;
+  font-weight:700;
+  line-height:1;
+}
+.brand-sub{
+  margin-top:3px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1;
+}
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  align-items:center;
+}
+.nav a{
+  font-size:13px;
+  font-weight:700;
+  color:#e8e8e8;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.nav a:hover{color:var(--gold-2)}
+.header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
-  if (!priceEl || !multEl) return;
+/* buttons */
+.btn{
+  height:48px;
+  padding:0 20px;
+  border-radius:12px;
+  border:1px solid var(--gold);
+  background:var(--gold);
+  color:#111;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.02em;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+.btn:hover{opacity:.95}
+.btn.secondary{
+  background:#121212;
+  color:#fff;
+  border-color:var(--line-strong);
+  box-shadow:none;
+}
+.btn.gold-outline{
+  background:#141414;
+  color:var(--gold-2);
+  border-color:#5d4920;
+  box-shadow:none;
+}
+.btn.wide{width:100%}
 
-  try {
-    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ripple&vs_currencies=usd");
-    const data = await res.json();
-    const price = data?.ripple?.usd;
-    if (!price) throw new Error("No price");
+/* hero */
+.hero{
+  padding:42px 0 28px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:28px;
+  align-items:stretch;
+}
+.hero-copy,
+.buy-card,
+.card,
+.panel,
+.chart-card,
+.faq-item,
+.page-box{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+}
+.hero-copy{
+  padding:30px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid #5d4920;
+  background:var(--gold-soft);
+  color:var(--gold-2);
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.eyebrow-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--gold);
+}
+.hero h1{
+  margin:18px 0 12px;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:76px;
+  line-height:.95;
+  letter-spacing:-2px;
+  text-transform:uppercase;
+}
+.hero .accent{
+  color:var(--gold-2);
+}
+.hero p.lead{
+  margin:0;
+  max-width:720px;
+  color:var(--muted);
+  font-size:18px;
+}
+.metric-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:22px 0 24px;
+}
+.metric{
+  padding:10px 14px;
+  border-radius:999px;
+  background:var(--panel-2);
+  border:1px solid var(--line);
+  color:#f1f1f1;
+  font-size:13px;
+  font-weight:700;
+}
+.metric.gold{
+  color:var(--gold-2);
+  border-color:#5d4920;
+  background:var(--gold-soft);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.hero-visual{
+  margin-top:26px;
+  padding:18px;
+  border-radius:18px;
+  background:#0d0d0d;
+  border:1px solid var(--line);
+}
 
-    priceEl.textContent = "XRP Live: " + formatMoney(price, 2);
+/* buy card */
+.buy-card{
+  padding:26px;
+  position:relative;
+}
+.buy-top{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+.small-label{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.price-big{
+  margin-top:8px;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:38px;
+  line-height:1;
+  font-weight:700;
+  color:#fff;
+}
+.stage-chip{
+  display:inline-block;
+  margin-top:10px;
+  padding:6px 11px;
+  border-radius:999px;
+  background:var(--gold-soft);
+  border:1px solid #5d4920;
+  color:var(--gold-2);
+  font-size:12px;
+  font-weight:800;
+}
+.progress-wrap{
+  margin:16px 0 18px;
+}
+.progress-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--muted);
+}
+.progress{
+  height:12px;
+  background:#1d1d1d;
+  border:1px solid var(--line);
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress-fill{
+  width:50.8%;
+  height:100%;
+  background:var(--gold);
+}
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:18px 0;
+}
+.cd-box{
+  padding:12px 8px;
+  text-align:center;
+  border-radius:14px;
+  background:var(--panel-2);
+  border:1px solid var(--line);
+}
+.cd-num{
+  display:block;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:28px;
+  line-height:1;
+  font-weight:700;
+  color:#fff;
+}
+.cd-lbl{
+  display:block;
+  margin-top:6px;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+  text-transform:uppercase;
+}
+.switcher{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:14px;
+}
+.switcher button{
+  height:46px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#111;
+  color:#e8e8e8;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+}
+.switcher button.active{
+  background:var(--gold);
+  color:#111;
+  border-color:var(--gold);
+}
+.form-label{
+  margin-bottom:6px;
+  font-size:13px;
+  font-weight:700;
+}
+.input-wrap{
+  display:flex;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  background:#0d0d0d;
+  margin-bottom:10px;
+}
+.input-wrap input{
+  flex:1;
+  padding:16px;
+  border:none;
+  outline:none;
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+  background:transparent;
+}
+.input-wrap input::placeholder{color:#808080}
+.input-tag{
+  padding:0 16px;
+  border-left:1px solid var(--line);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+.arrow-down{
+  text-align:center;
+  color:#8a8a8a;
+  margin:2px 0 10px;
+  font-size:20px;
+}
+.receive-box{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 18px;
+  border-radius:14px;
+  background:var(--gold-soft);
+  border:1px solid #5d4920;
+  margin-bottom:14px;
+}
+.receive-value{
+  font-family:'Chakra Petch',sans-serif;
+  font-size:30px;
+  font-weight:700;
+  line-height:1;
+  color:var(--gold-2);
+}
+.receive-token{
+  font-size:13px;
+  font-weight:700;
+  color:#e7c98b;
+}
+.tiny-note{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+}
+.wallet-box{
+  display:none;
+  margin-bottom:16px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:#0d0d0d;
+  border:1px solid var(--line);
+}
+.wallet-box.show{display:block}
+.wallet-addr{
+  margin-top:4px;
+  font-size:12px;
+  color:#d8d8d8;
+  word-break:break-all;
+}
 
-    const mult = price / XRPN_PRICE;
-    const rounded = Math.round(mult);
-    multEl.textContent = rounded + "x vs live XRP";
+/* sections */
+.section{
+  padding:28px 0 10px;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:18px;
+}
+.section-head h2{
+  margin:0;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-1px;
+  text-transform:uppercase;
+}
+.section-head p{
+  margin:0;
+  max-width:680px;
+  color:var(--muted);
+}
 
-    if (profitEl) {
-      const projected = 100 * mult;
-      profitEl.innerHTML =
-        "$100 today could represent <strong>" +
-        formatMoney(projected, 0) +
-        "</strong> if XRPN reaches XRP’s current price.";
-    }
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.grid-2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
 
-    if (liveBarText) liveBarText.textContent = formatMoney(price, 2);
-    if (liveBarFill) {
-      const pct = Math.min(100, Math.max(8, (price / 2.5) * 100));
-      liveBarFill.style.width = pct + "%";
-    }
-  } catch (e) {
-    priceEl.textContent = "XRP Live: Unavailable";
-    multEl.textContent = "Comparison temporarily unavailable";
-    if (profitEl) {
-      profitEl.textContent = "Projection will appear once the live XRP price loads again.";
-    }
-    if (liveBarText) liveBarText.textContent = "—";
+.stat-card,
+.card,
+.panel,
+.chart-card{
+  padding:24px;
+}
+.stat-card.gold{
+  background:#161109;
+  border-color:#5d4920;
+}
+.stat-card.dark{
+  background:#111111;
+}
+.stat-number{
+  margin-bottom:8px;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:36px;
+  line-height:1;
+  font-weight:700;
+}
+.stat-label{
+  color:var(--muted);
+  font-size:14px;
+  font-weight:600;
+}
+.card h3,
+.chart-card h3,
+.panel h3{
+  margin:0 0 8px;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:24px;
+  line-height:1;
+  text-transform:uppercase;
+}
+.card p,
+.chart-card p,
+.panel p{
+  margin:0;
+  font-size:15px;
+  color:var(--muted);
+}
+.icon-circle{
+  width:52px;
+  height:52px;
+  border-radius:14px;
+  background:var(--gold-soft);
+  border:1px solid #5d4920;
+  color:var(--gold-2);
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  margin-bottom:14px;
+}
+
+/* media rail */
+.logo-rail{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+}
+.logo-pill{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:74px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:#e8e8e8;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+/* charts */
+.chart{
+  margin-top:18px;
+}
+.bar-row{
+  margin-bottom:16px;
+}
+.bar-label{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:8px;
+  font-size:13px;
+  font-weight:700;
+}
+.bar-track{
+  height:12px;
+  background:#181818;
+  border:1px solid var(--line);
+  border-radius:999px;
+  overflow:hidden;
+}
+.bar-fill{
+  height:100%;
+  border-radius:999px;
+  background:var(--gold);
+}
+.bar-fill.green{background:#2dc653}
+.bar-fill.soft{background:#8c8c8c}
+
+/* roadmap */
+.timeline{
+  display:grid;
+  gap:18px;
+}
+.timeline-item{
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:18px;
+  align-items:start;
+}
+.timeline-date{
+  padding-top:5px;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:16px;
+  font-weight:700;
+  color:var(--gold-2);
+}
+.timeline-box{
+  padding:18px;
+  border-radius:16px;
+  background:var(--panel-2);
+  border:1px solid var(--line);
+}
+.timeline-box h4{
+  margin:0 0 8px;
+  font-family:'Chakra Petch',sans-serif;
+  font-size:20px;
+  text-transform:uppercase;
+}
+.timeline-box ul{
+  margin:0;
+  padding-left:18px;
+  color:var(--muted);
+}
+.timeline-box li{margin-bottom:6px}
+
+/* faq */
+.faq-list{
+  display:grid;
+  gap:14px;
+}
+.faq-item{overflow:hidden}
+.faq-q{
+  width:100%;
+  padding:22px 24px;
+  border:none;
+  background:var(--panel);
+  text-align:left;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:16px;
+  font-weight:800;
+  color:#fff;
+  cursor:pointer;
+}
+.faq-icon{
+  font-size:22px;
+  color:var(--muted);
+}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  padding:0 24px;
+  color:var(--muted);
+  transition:max-height .25s ease, padding .25s ease;
+}
+.faq-a.open{
+  max-height:240px;
+  padding:0 24px 20px;
+}
+
+/* footer */
+.footer{
+  margin-top:56px;
+  border-top:1px solid var(--line);
+  background:#050505;
+}
+.footer-inner{
+  padding:28px 0 40px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.footer-links{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.footer small{color:var(--muted)}
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:999;
+  max-width:360px;
+  padding:14px 18px;
+  border-radius:14px;
+  background:#111;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.45;
+  border:1px solid var(--line-strong);
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(10px);
+  transition:opacity .25s ease, transform .25s ease;
+}
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media (max-width: 980px){
+  .header-inner{
+    min-height:auto;
+    padding:14px 0;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .hero-grid,
+  .grid-4,
+  .grid-3,
+  .grid-2,
+  .logo-rail{
+    grid-template-columns:1fr;
+  }
+  .hero h1{
+    font-size:48px;
+    letter-spacing:-1.5px;
+  }
+  .section-head h2{
+    font-size:34px;
+  }
+  .countdown{
+    grid-template-columns:repeat(2,1fr);
   }
 }
-
-function setPaymentTab(token) {
-  activeToken = token;
-
-  const ethBtn = document.getElementById("tab-eth");
-  const usdtBtn = document.getElementById("tab-usdt");
-  const label = document.getElementById("pay-label");
-  const tag = document.getElementById("pay-tag");
-  const input = document.getElementById("pay-input");
-
-  if (!ethBtn || !usdtBtn || !label || !tag || !input) return;
-
-  ethBtn.classList.toggle("active", token === "ETH");
-  usdtBtn.classList.toggle("active", token === "USDT");
-  label.textContent = token === "ETH" ? "Amount you pay in ETH" : "Amount you pay in USDT";
-  tag.textContent = token;
-  input.value = "";
-  updateReceive();
-}
-
-function updateReceive() {
-  const input = document.getElementById("pay-input");
-  const receive = document.getElementById("receive-value");
-  if (!input || !receive) return;
-
-  const value = parseFloat(input.value) || 0;
-  const usd = activeToken === "ETH" ? value * ETH_PRICE : value;
-  const amount = usd / XRPN_PRICE;
-
-  receive.textContent = value > 0 ? Math.floor(amount).toLocaleString() : "—";
-}
-
-function startCountdown() {
-  let seconds = 1 * 86400 + 23 * 3600 + 41 * 60 + 7;
-  const d = document.getElementById("cd-d");
-  const h = document.getElementById("cd-h");
-  const m = document.getElementById("cd-m");
-  const s = document.getElementById("cd-s");
-  if (!d || !h || !m || !s) return;
-
-  const render = () => {
-    const pad = n => String(n).padStart(2, "0");
-    d.textContent = pad(Math.floor(seconds / 86400));
-    h.textContent = pad(Math.floor((seconds % 86400) / 3600));
-    m.textContent = pad(Math.floor((seconds % 3600) / 60));
-    s.textContent = pad(seconds % 60);
-  };
-
-  render();
-  setInterval(() => {
-    if (seconds > 0) seconds--;
-    render();
-  }, 1000);
-}
-
-async function connectWallet() {
-  if (!window.ethereum) {
-    showToast("MetaMask is required to connect a wallet.");
-    return;
-  }
-
-  try {
-    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-    const addr = accounts[0];
-    const short = addr.slice(0, 6) + "..." + addr.slice(-4);
-
-    const walletBox = document.getElementById("wallet-box");
-    const walletAddr = document.getElementById("wallet-addr");
-    const connectBtn = document.getElementById("connect-btn");
-    const buyBtn = document.getElementById("buy-btn");
-
-    if (walletBox) walletBox.classList.add("show");
-    if (walletAddr) walletAddr.textContent = addr;
-    if (connectBtn) connectBtn.textContent = short;
-    if (buyBtn) buyBtn.textContent = "Buy XRPN";
-    walletConnected = true;
-
-    showToast("Wallet connected: " + short);
-  } catch (e) {
-    showToast("Wallet connection was cancelled.");
-  }
-}
-
-function handleBuy() {
-  const input = document.getElementById("pay-input");
-  const value = parseFloat(input?.value) || 0;
-
-  if (!walletConnected) {
-    connectWallet();
-    return;
-  }
-
-  if (!value) {
-    showToast("Please enter an amount first.");
-    return;
-  }
-
-  if (activeToken === "ETH") {
-    showToast("Demo flow: ETH purchase request prepared.");
-  } else {
-    showToast("Demo flow: USDT approve + buy request prepared.");
-  }
-}
-
-function initFaq() {
-  document.querySelectorAll(".faq-q").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const answer = btn.nextElementSibling;
-      const icon = btn.querySelector(".faq-icon");
-      const open = answer.classList.contains("open");
-
-      document.querySelectorAll(".faq-a").forEach(a => a.classList.remove("open"));
-      document.querySelectorAll(".faq-icon").forEach(i => i.textContent = "+");
-
-      if (!open) {
-        answer.classList.add("open");
-        if (icon) icon.textContent = "–";
-      }
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  updateXRPPrice();
-  setInterval(updateXRPPrice, 15000);
-  startCountdown();
-  initFaq();
-
-  const input = document.getElementById("pay-input");
-  if (input) input.addEventListener("input", updateReceive);
-});
